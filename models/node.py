@@ -8,4 +8,4 @@ class Node:
         self.coordinate = coordinate
 
     def __str__(self):
-        return f"{str(self.coordinate)}"
+        return f"{str(self.letter)}"

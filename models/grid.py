@@ -1,5 +1,6 @@
 from models.node import Node
 from models.coordinate import get_coordinate
+from models.stack import Stack
 from utils.alphabet import random_letter
 
 
@@ -28,6 +29,20 @@ class Grid:
     def get_node(self, x: int, y: int) -> Node:
         return self.nodes[x][y]
 
+    def get_neighbours(self, x: int, y: int) -> list[Node]:
+        coordinate = get_coordinate(x, y)
+        c_neighbours = coordinate.get_neighbours()
 
-grid = Grid(4)
+        neighbours = []
+
+        for neighbour in c_neighbours:
+            neighbours.append(self.get_node(neighbour.x, neighbour.y))
+
+        return neighbours
+
+    def depth_first_search(self, x: int, y: int):
+        pass
+
+
+grid = Grid(10)
 print(grid)
