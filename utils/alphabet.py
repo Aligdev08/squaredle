@@ -5,4 +5,4 @@ vowels = "AEIOU"
 
 
 def random_letter():
-    return random.choice(alphabet + vowels * 3).upper()
+    return random.choice(alphabet + vowels * 5).upper()
