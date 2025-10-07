@@ -1,5 +1,5 @@
-from models.node import Node
 from models.coordinate import get_coordinate
+from models.node import Node
 from models.stack import Stack
 from utils.alphabet import random_letter
 
@@ -16,7 +16,9 @@ class Grid:
     def __str__(self):
         table = []
         for col in range(0, self.length):
-            table.append(" ".join(str(self.nodes[col][row]) for row in range(0, self.length)))
+            table.append(
+                " ".join(str(self.nodes[col][row]) for row in range(0, self.length))
+            )
         return "\n".join(row_str for row_str in table)
 
     def __generate_nodes(self):

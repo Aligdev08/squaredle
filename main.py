@@ -15,4 +15,3 @@ while running:
 
     clock = pygame.time.Clock()
     clock.tick(60)
-
