@@ -44,5 +44,5 @@ class Grid:
         pass
 
 
-grid = Grid(10)
+grid = Grid(4)
 print(grid)
