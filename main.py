@@ -1,6 +1,8 @@
 import pygame
 
 game_surface = pygame.display.set_mode([500, 500])
+pygame.display.set_icon(pygame.image.load("media/logo.jpg"))
+pygame.display.set_caption("Squaredle NEA - Ali Ghali")
 
 running = True
 
