@@ -19,6 +19,3 @@ class Stack:
 
     def peek(self):
         return self.list[-1]
-
-
-stack = Stack(5, 10)
