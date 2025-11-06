@@ -1,22 +1,25 @@
 from abc import abstractmethod
+from pygame import Surface, event, key
 
 
-class SceneBase:
+class BaseScene:
     def __init__(self):
         self.next = self
 
     @abstractmethod
-    def process(self, events):
-        """Process user input"""
-        print("uh-oh, you didn't override this in the child class")
+    def process(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
+        pass
 
     @abstractmethod
     def update(self):
-        print("uh-oh, you didn't override this in the child class")
+        pass
 
     @abstractmethod
-    def render(self, screen):
-        print("uh-oh, you didn't override this in the child class")
+    def render(self, screen: Surface):
+        pass
 
-    def switch_to_next_scene(self, next_scene: "SceneBase"):
+    def switch_scene(self, next_scene: "BaseScene"):
         self.next = next_scene
+
+    def terminate(self):
+        self. switch_scene(None)

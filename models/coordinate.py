@@ -1,5 +1,7 @@
 class Coordinate:
     def __init__(self, x: int, y: int):
+        if x < 0 or y < 0:
+            raise ValueError("x and y coordinates must be a natural number.")
         self.x = x
         self.y = y
 
@@ -18,9 +20,15 @@ class Coordinate:
             (self.x + 1, self.y + 1),
             (self.x + 1, self.y - 1)
         ]:
-            if not any(coord < 0 for coord in [self.x, self.y]):
+            if not any(coord < 0 for coord in (x, y)):
                 neighbours.append(Coordinate(x, y))
         return neighbours
+
+    @classmethod
+    def from_dict(cls, data: dict):
+        x = data.get("x", -1)
+        y = data.get("y", -1)
+        return cls(x, y)
 
 
 class CornerCoordinate(Coordinate):
@@ -38,8 +46,8 @@ class CentreCoordinate(Coordinate):
         super().__init__(x, y)
 
 
-def get_coordinate(x: int, y: int) -> CentreCoordinate | EdgeCoordinate | CornerCoordinate:
-    coordinate = Coordinate(x, y)
+def get_coordinate(coordinate: Coordinate) -> CentreCoordinate | EdgeCoordinate | CornerCoordinate:
+    x, y = coordinate.x, coordinate.y
     neighbours = coordinate.get_neighbours()
     match len(neighbours):
         case 8:
