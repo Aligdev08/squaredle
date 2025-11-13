@@ -46,6 +46,10 @@ class CentreCoordinate(Coordinate):
         super().__init__(x, y)
 
 
+def get_coordinate_from_values(x: int, y: int) -> CentreCoordinate | EdgeCoordinate | CornerCoordinate:
+    return get_coordinate(Coordinate(x, y))
+
+
 def get_coordinate(coordinate: Coordinate) -> CentreCoordinate | EdgeCoordinate | CornerCoordinate:
     x, y = coordinate.x, coordinate.y
     neighbours = coordinate.get_neighbours()

@@ -1,11 +1,11 @@
-from models.coordinate import get_coordinate, Coordinate
+from models.coordinate import get_coordinate, Coordinate, get_coordinate_from_values
 from models.node import Node
 from models.stack import Stack
 from utils.alphabet import random_letter
 
 
 class Grid:
-    def __init__(self, length: int = 4, nodes: list[list[Node]] = []):
+    def __init__(self, length: int = 4, nodes: list[list[Node]] = [[]]):
         self.length = length
         self.nodes: list[list[Node]] = nodes
         if not nodes:
@@ -34,7 +34,7 @@ class Grid:
         return self.nodes[x][y]
 
     def get_neighbours(self, x: int, y: int) -> list[Node]:
-        coordinate = get_coordinate(x, y)
+        coordinate = get_coordinate_from_values(x, y)
         c_neighbours = coordinate.get_neighbours()
 
         neighbours = []
@@ -55,12 +55,11 @@ class Grid:
         for x in range(0, len(nodes_dict)):
             x: int
             col_dict: list[dict] = nodes_dict[x]
-            col: list[Node] = []
 
+            col: list[Node] = []
             for y in col_dict:
                 y: dict
                 col.append(Node.from_dict(y))
-
             nodes.insert(x, col)
 
         return cls(len(nodes), nodes)
@@ -83,22 +82,22 @@ grid = Grid.from_dict(
                         "x": 0,
                         "y": 1
                     }
-                }
-            ],
-            {
-                "letter": "A",
-                "coordinate": {
-                    "x": 1,
-                    "y": 0
-                }
-            },
-            {
-                "letter": "A",
-                "coordinate": {
-                    "x": 1,
-                    "y": 1
-                }
-            }
+                },
+            ], [
+                {
+                    "letter": "A",
+                    "coordinate": {
+                        "x": 1,
+                        "y": 0
+                    }
+                },
+                {
+                    "letter": "A",
+                    "coordinate": {
+                        "x": 1,
+                        "y": 1
+                    }
+                }]
         ]
     })
 print(grid)

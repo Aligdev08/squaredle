@@ -17,20 +17,22 @@
           }
         }
       ],
-      {
-        "letter": "A",
-        "coordinate": {
-          "x": 1,
-          "y": 0
+      [
+        {
+          "letter": "A",
+          "coordinate": {
+            "x": 1,
+            "y": 0
+          }
+        },
+        {
+          "letter": "A",
+          "coordinate": {
+            "x": 1,
+            "y": 1
+          }
         }
-      },
-      {
-        "letter": "A",
-        "coordinate": {
-          "x": 1,
-          "y": 1
-        }
-      }
+      ]
     ]
   }
 }
