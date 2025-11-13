@@ -44,8 +44,19 @@ class Grid:
 
         return neighbours
 
+    def traverse(self, node: Node):
+        for neighbour in self.get_neighbours(node.coordinate.x, node.coordinate.y):
+            pass
+
     def depth_first_search(self, x: int, y: int):
-        pass
+        visited = []
+        traversing = Stack()
+
+        root_node = self.get_node(x, y)
+        traversing.push(root_node)
+
+        while visited != self.length ** 2:
+            traversing_node = traversing.pop()
 
     @classmethod
     def from_dict(cls, data: dict) -> "Grid":
