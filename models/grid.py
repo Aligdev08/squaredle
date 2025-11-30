@@ -1,4 +1,4 @@
-from models.coordinate import get_coordinate, Coordinate, get_coordinate_from_values
+from models.coordinate import Coordinate, get_coordinate, get_coordinate_from_values
 from models.node import Node
 from models.stack import Stack
 from utils.alphabet import random_letter
@@ -26,8 +26,7 @@ class Grid:
         for x in range(0, self.length):
             col = []
             for y in range(0, self.length):
-                col.append(Node(random_letter(), get_coordinate(Coordinate(
-                    x, y))))
+                col.append(Node(random_letter(), get_coordinate(Coordinate(x, y))))
             self.nodes.append(col)
 
     def get_node(self, x: int, y: int) -> Node:
@@ -45,8 +44,11 @@ class Grid:
         return neighbours
 
     def traverse(self, node: Node):
+        neighbours = []
         for neighbour in self.get_neighbours(node.coordinate.x, node.coordinate.y):
-            pass
+            neighbours.append(
+                self.get_node(neighbour.coordinate.x, neighbour.coordinate.y)
+            )
 
     def depth_first_search(self, x: int, y: int):
         visited = []
@@ -55,8 +57,17 @@ class Grid:
         root_node = self.get_node(x, y)
         traversing.push(root_node)
 
-        while visited != self.length ** 2:
-            traversing_node = traversing.pop()
+        while not traversing.is_empty():
+            current_node = traversing.pop()
+            visited.append(current_node)
+
+            for neighbour in self.get_neighbours(
+                current_node.coordinate.x, current_node.coordinate.y
+            ):
+                if neighbour not in visited:
+                    traversing.push(neighbour)
+
+        return visited
 
     @classmethod
     def from_dict(cls, data: dict) -> "Grid":
@@ -80,35 +91,16 @@ grid = Grid.from_dict(
     {
         "nodes": [
             [
-                {
-                    "letter": "A",
-                    "coordinate": {
-                        "x": 0,
-                        "y": 0
-                    }
-                },
-                {
-                    "letter": "A",
-                    "coordinate": {
-                        "x": 0,
-                        "y": 1
-                    }
-                },
-            ], [
-                {
-                    "letter": "A",
-                    "coordinate": {
-                        "x": 1,
-                        "y": 0
-                    }
-                },
-                {
-                    "letter": "A",
-                    "coordinate": {
-                        "x": 1,
-                        "y": 1
-                    }
-                }]
+                {"letter": "A", "coordinate": {"x": 0, "y": 0}},
+                {"letter": "A", "coordinate": {"x": 0, "y": 1}},
+            ],
+            [
+                {"letter": "A", "coordinate": {"x": 1, "y": 0}},
+                {"letter": "A", "coordinate": {"x": 1, "y": 1}},
+            ],
         ]
-    })
+    }
+)
 print(grid)
+
+print(grid.depth_first_search(0, 0))
