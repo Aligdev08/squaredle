@@ -2,7 +2,7 @@ import pygame
 
 from scenes.title.title import TitleScene
 
-game_surface = pygame.display.set_mode([500, 500])
+game_surface = pygame.display.set_mode([800, 450])
 pygame.display.set_icon(pygame.image.load("media/logo.jpg"))
 pygame.display.set_caption("Squaredle NEA - Ali Ghali")
 
