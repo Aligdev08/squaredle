@@ -52,7 +52,9 @@ class Grid:
 
     def depth_first_search(self, x: int, y: int):
         visited = []
-        traversing = Stack()
+
+        max_depth = self.length * self.length
+        traversing = Stack(max_depth)
 
         root_node = self.get_node(x, y)
         traversing.push(root_node)

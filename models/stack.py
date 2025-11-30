@@ -1,25 +1,31 @@
 class Stack:
-    """
-    Python implementation of a stack with a variable size.
-    """
+    def __init__(self, max_length: int):
+        self.array = [None] * max_length  # simulate list being fixed-length
+        self.top_pointer = 0  # next available index
 
-    def __init__(self, *args):
-        self.list = list()
-        self.__load(*args)
+    def __str__(self) -> str:
+        return ", ".join(
+            value if value and i < self.top_pointer else "_"
+            for i, value in enumerate(self.array)
+        )
 
-    def __str__(self):
-        return str(self.list)
+    def is_empty(self) -> bool:
+        return self.top_pointer == 0
 
-    def __load(self, *args):
-        for arg in args:
-            self.list.append(arg)
+    def is_full(self) -> bool:
+        return self.top_pointer == len(self.array)
+
+    def peek(self) -> object:
+        return self.array[self.top_pointer - 1]
 
     def pop(self) -> object:
-        return self.list.pop(0)
+        if self.is_empty():
+            raise ValueError("Stack is empty.")
+        self.top_pointer -= 1
+        return self.array[self.top_pointer]  # doesn't have to be replaced with None
 
-    def push(self, element: object) -> object:
-        self.list.append(element)
-        return element
-
-    def peek(self):
-        return self.list[-1]
+    def push(self, value: object) -> None:
+        if self.is_full():
+            raise ValueError("Stack is full.")
+        self.array[self.top_pointer] = value
+        self.top_pointer += 1
