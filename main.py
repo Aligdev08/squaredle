@@ -1,4 +1,5 @@
 import pygame
+
 from scenes.title.title import TitleScene
 
 game_surface = pygame.display.set_mode([500, 500])
@@ -20,8 +21,7 @@ while active_scene is not None:
         if event.type == pygame.QUIT:
             quit_attempt = True
         elif event.type == pygame.KEYDOWN:
-            alt_pressed = pressed_keys[pygame.K_LALT] or \
-                          pressed_keys[pygame.K_RALT]
+            alt_pressed = pressed_keys[pygame.K_LALT] or pressed_keys[pygame.K_RALT]
             if event.key == pygame.K_ESCAPE:
                 quit_attempt = True
             elif event.key == pygame.K_F4 and alt_pressed:

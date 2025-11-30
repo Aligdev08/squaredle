@@ -1,5 +1,6 @@
-from scenes.scene import BaseScene
 from pygame import Surface, event, key
+
+from scenes.scene import BaseScene
 
 
 class TitleScene(BaseScene):

@@ -1,11 +1,17 @@
-from models.coordinate import CentreCoordinate, CornerCoordinate, EdgeCoordinate, Coordinate, get_coordinate
+from models.coordinate import (
+    CentreCoordinate,
+    Coordinate,
+    CornerCoordinate,
+    EdgeCoordinate,
+    get_coordinate,
+)
 
 
 class Node:
     def __init__(
-            self,
-            letter: str,
-            coordinate: CentreCoordinate | EdgeCoordinate | CornerCoordinate,
+        self,
+        letter: str,
+        coordinate: CentreCoordinate | EdgeCoordinate | CornerCoordinate,
     ):
         if len(letter) != 1:
             raise ValueError(f"Letter must be one character long.")

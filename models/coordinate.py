@@ -18,7 +18,7 @@ class Coordinate:
             (self.x - 1, self.y - 1),
             (self.x - 1, self.y + 1),
             (self.x + 1, self.y + 1),
-            (self.x + 1, self.y - 1)
+            (self.x + 1, self.y - 1),
         ]:
             if not any(coord < 0 for coord in (x, y)):
                 neighbours.append(Coordinate(x, y))
@@ -46,11 +46,15 @@ class CentreCoordinate(Coordinate):
         super().__init__(x, y)
 
 
-def get_coordinate_from_values(x: int, y: int) -> CentreCoordinate | EdgeCoordinate | CornerCoordinate:
+def get_coordinate_from_values(
+    x: int, y: int
+) -> CentreCoordinate | EdgeCoordinate | CornerCoordinate:
     return get_coordinate(Coordinate(x, y))
 
 
-def get_coordinate(coordinate: Coordinate) -> CentreCoordinate | EdgeCoordinate | CornerCoordinate:
+def get_coordinate(
+    coordinate: Coordinate,
+) -> CentreCoordinate | EdgeCoordinate | CornerCoordinate:
     x, y = coordinate.x, coordinate.y
     neighbours = coordinate.get_neighbours()
     match len(neighbours):

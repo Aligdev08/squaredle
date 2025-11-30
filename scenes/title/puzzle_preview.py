@@ -1,6 +1,8 @@
-from models.grid import Grid
-from pygame import Surface
 import time
+
+from pygame import Surface
+
+from models.grid import Grid
 
 
 class PuzzlePreview:

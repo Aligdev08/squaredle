@@ -1,7 +1,9 @@
-from scenes.title.puzzle_preview import PuzzlePreview
-from pygame import image
-from models.grid import Grid
 import os
+
+from pygame import image
+
+from models.grid import Grid
+from scenes.title.puzzle_preview import PuzzlePreview
 
 
 class PreviewsManager:

@@ -2,6 +2,7 @@ class Stack:
     """
     Python implementation of a stack with a variable size.
     """
+
     def __init__(self, *args):
         self.list = list()
         self.__load(*args)

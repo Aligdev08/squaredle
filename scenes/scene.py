@@ -1,4 +1,5 @@
 from abc import abstractmethod
+
 from pygame import Surface, event, key
 
 
@@ -22,4 +23,4 @@ class BaseScene:
         self.next = next_scene
 
     def terminate(self):
-        self. switch_scene(None)
+        self.switch_scene(None)
