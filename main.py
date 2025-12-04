@@ -1,8 +1,10 @@
 import pygame
 
+pygame.init()
+
 from scenes.title.title import TitleScene
 
-game_surface = pygame.display.set_mode([800, 450])
+game_surface = pygame.display.set_mode([1000, 600])
 pygame.display.set_icon(pygame.image.load("media/logo.jpg"))
 pygame.display.set_caption("Squaredle NEA - Ali Ghali")
 
@@ -11,7 +13,6 @@ running = True
 active_scene = TitleScene()
 
 while active_scene is not None:
-    game_surface.fill((255, 255, 255))
 
     pressed_keys = pygame.key.get_pressed()
 

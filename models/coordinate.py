@@ -8,7 +8,7 @@ class Coordinate:
     def __str__(self):
         return f"({self.x}, {self.y})"
 
-    def get_neighbours(self) -> list["Coordinate"]:
+    def get_neighbours(self, limit=None) -> list["Coordinate"]:
         neighbours = []
         for x, y in [
             (self.x - 1, self.y),
@@ -20,7 +20,7 @@ class Coordinate:
             (self.x + 1, self.y + 1),
             (self.x + 1, self.y - 1),
         ]:
-            if not any(coord < 0 for coord in (x, y)):
+            if not any(coord < 0 or limit and coord > limit for coord in (x, y)):
                 neighbours.append(Coordinate(x, y))
         return neighbours
 

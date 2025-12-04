@@ -1,4 +1,4 @@
-from models.coordinate import (
+from coordinate import (
     CentreCoordinate,
     Coordinate,
     CornerCoordinate,

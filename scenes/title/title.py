@@ -1,17 +1,33 @@
-from pygame import Surface, event, key
+from pygame import Color, Rect, Surface, event, key
 
+from models.button import Button
 from scenes.scene import BaseScene
+from utils.alignment import centre_x, centre_y
 
 
 class TitleScene(BaseScene):
     def __init__(self):
         super().__init__()
+        self.text = self.heading_one.render("Squaredle", True, Color(0, 0, 0))
+
+        self.previews_bg = Surface((1000, 250))
+        self.previews_bg.fill(Color(200, 200, 200))
+
+        self.login_button = Button(
+            Rect(0, 0, 50, 50), Color(200, 0, 0), lambda: print("hi")
+        )
 
     def process(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
-        pass
+        self.login_button.process(events, pressed_keys)
 
     def update(self):
         pass
 
     def render(self, screen: Surface):
-        pass
+        screen.fill((255, 255, 255))
+
+        screen.blit(self.text, (centre_x(screen, self.text), 20))
+
+        screen.blit(self.previews_bg, (0, centre_y(screen, self.previews_bg)))
+
+        self.login_button.render(screen)
