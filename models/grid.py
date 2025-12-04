@@ -1,23 +1,18 @@
-# from utils.alphabet import random_letter
-import random
+from utils.alphabet import random_letter
 import time
 
-from coordinate import Coordinate, get_coordinate, get_coordinate_from_values
-from node import Node
-
-alphabet = "BCDFGHJKLMNOPQRSTVWXYZ"
-vowels = "AEIOU"
-
-
-def random_letter():
-    return random.choice(alphabet + vowels * 5).upper()
+from models.coordinate import Coordinate, get_coordinate, get_coordinate_from_values
+from models.node import Node
 
 
 class Grid:
-    def __init__(self, length: int = 4, nodes: list[list[Node]] = []):
+    def __init__(self, length: int = 4, nodes=None):
+        if nodes is None:
+            nodes = []
+
         self.length = length
         self.nodes: list[list[Node]] = nodes
-        if nodes == []:
+        if not nodes:
             self.__generate_nodes()
 
     def __repr__(self):
