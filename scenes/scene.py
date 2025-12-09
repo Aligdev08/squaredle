@@ -20,7 +20,7 @@ class BaseScene:
     def render(self, screen: Surface):
         pass
 
-    def switch_scene(self, next_scene: "BaseScene"):
+    def switch_scene(self, next_scene: "type[BaseScene]"):
         self.next = next_scene
 
     def terminate(self):

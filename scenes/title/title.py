@@ -1,6 +1,7 @@
 from pygame import Color, Rect, Surface, event, key
 
 from models.button import Button
+from scenes.login.login import LoginScene
 from scenes.scene import BaseScene
 from utils.alignment import centre_x, centre_y
 
@@ -14,8 +15,11 @@ class TitleScene(BaseScene):
         self.previews_bg.fill(Color(200, 200, 200))
 
         self.login_button = Button(
-            Rect(0, 0, 50, 50), Color(200, 0, 0), lambda: print("hi")
+            Rect(0, 0, 50, 50), Color(200, 0, 0), self.__switch_to_login_scene
         )
+
+    def __switch_to_login_scene(self):
+        self.switch_scene(LoginScene())
 
     def process(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
         self.login_button.process(events, pressed_keys)
