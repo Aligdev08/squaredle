@@ -12,6 +12,11 @@ class BaseScene:
     def process(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
         pass
 
+    def process_all(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
+        self.process(events, pressed_keys)
+        for sub_scene in self.sub_scenes:
+            sub_scene.process()
+
     @abstractmethod
     def update(self):
         pass
