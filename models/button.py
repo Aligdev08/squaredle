@@ -9,6 +9,7 @@ class Button(Hoverable):
     def __init__(self, rect: Rect, colour: Color, on_click: Callable):
         super().__init__(rect, colour)
         self.on_click = on_click
+        self.held_down = False
 
     def _mouse_up(self):
         self.held_down = True

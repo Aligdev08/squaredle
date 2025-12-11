@@ -26,12 +26,16 @@ class Hoverable:
             self._mouse_down(mouse_pos)
 
     def process(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
-        mouse_pos = pygame.mouse.get_pos()
+        abs_pos = pygame.mouse.get_pos()
 
-        if self.rect.collidepoint(mouse_pos):
+        print(self.rect.x, self.rect.y)
+
+        if self.rect.collidepoint(abs_pos):
+            relative_mouse_pos = abs_pos[0] - self.rect.x, abs_pos[1] - self.rect.y
+
             self.screen.fill(self.hover_colour)
             for _event in events:
-                self.__handle_event(_event, mouse_pos)
+                self.__handle_event(_event, relative_mouse_pos)
         else:
             self.screen.fill(self.fill)
 

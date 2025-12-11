@@ -33,9 +33,9 @@ while active_scene is not None:
         else:
             filtered_events.append(event)
 
-    active_scene.process(filtered_events, pressed_keys)
-    active_scene.update()
-    active_scene.render(game_surface)
+    active_scene.process_all(filtered_events, pressed_keys)
+    active_scene.update_all()
+    active_scene.render_all(game_surface)
 
     active_scene = active_scene.next
 

@@ -9,6 +9,14 @@ def centre_y(container: Surface, content: Surface) -> int:
     return (container.height - content.height) // 2
 
 
+def centre_x_values(container_width: int, content_width: int) -> int:
+    return (container_width - content_width) // 2
+
+
+def centre_y_values(container_height: int, content_height: int) -> int:
+    return (container_height - content_height) // 2
+
+
 def final_x(container: Surface, content: Surface) -> int:
     return container.width - content.width
 
