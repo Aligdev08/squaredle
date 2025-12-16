@@ -23,3 +23,11 @@ def final_x(container: Surface, content: Surface) -> int:
 
 def final_y(container: Surface, content: Surface) -> int:
     return container.height - content.height
+
+
+def get_relative_sub_screen_width(parent_screen: Surface) -> int:
+    return int(parent_screen.width * 0.7)
+
+
+def get_relative_sub_screen_height(parent_screen: Surface) -> int:
+    return int(parent_screen.height * 0.7)

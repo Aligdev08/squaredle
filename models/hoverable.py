@@ -25,17 +25,21 @@ class Hoverable:
         elif e.type == pygame.MOUSEBUTTONUP:
             self._mouse_down(mouse_pos)
 
-    def process(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
-        abs_pos = pygame.mouse.get_pos()
+    def process(
+        self,
+        events: list[event.Event],
+        pressed_keys: key.ScancodeWrapper,
+        relative_pos: tuple[int, int] = None,
+    ):
+        pos = relative_pos or pygame.mouse.get_pos()
 
-        print(self.rect.x, self.rect.y)
+        print(pos)
 
-        if self.rect.collidepoint(abs_pos):
-            relative_mouse_pos = abs_pos[0] - self.rect.x, abs_pos[1] - self.rect.y
+        if self.rect.collidepoint(pos):
 
             self.screen.fill(self.hover_colour)
             for _event in events:
-                self.__handle_event(_event, relative_mouse_pos)
+                self.__handle_event(_event, pos)
         else:
             self.screen.fill(self.fill)
 

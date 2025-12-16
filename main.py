@@ -10,7 +10,7 @@ pygame.display.set_caption("Squaredle NEA - Ali Ghali")
 
 running = True
 
-active_scene = TitleScene()
+active_scene = TitleScene(0, 0)
 
 while active_scene is not None:
 

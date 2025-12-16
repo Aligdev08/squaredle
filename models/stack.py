@@ -9,6 +9,16 @@ class Stack:
             for i, value in enumerate(self.array)
         )
 
+    def __len__(self):
+        i = 0
+
+        for item in self.array:
+            if item is None:
+                break
+            i += 1
+
+        return i
+
     def is_empty(self) -> bool:
         return self.top_pointer == 0
 
