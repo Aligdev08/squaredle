@@ -6,8 +6,15 @@ from models.hoverable import Hoverable
 
 
 class Button(Hoverable):
-    def __init__(self, rect: Rect, colour: Color, on_click: Callable):
-        super().__init__(rect, colour)
+    def __init__(
+        self,
+        rect: Rect,
+        colour: Color,
+        on_click: Callable,
+        text: str | None = None,
+        text_colour: Color = Color("white"),
+    ):
+        super().__init__(rect, colour, text, text_colour)
         self.on_click = on_click
         self.held_down = False
 

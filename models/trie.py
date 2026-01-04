@@ -63,6 +63,21 @@ class Trie:
 
         self.save_json()
 
+    def is_prefix(self, word: str) -> bool:
+        """Check if a word is a prefix to a real word."""
+        word = self._format_word(word)
+        if not word:
+            return False
+
+        node = self.dictionary
+
+        for letter in word:
+            if letter not in node:
+                return False
+            node = node[letter]
+
+        return True
+
     def search(self, word: str) -> bool:
         word = self._format_word(word)
         if not word:
@@ -79,3 +94,18 @@ class Trie:
 
 
 trie = Trie()
+
+with open("media/words.tsv", "r") as f:
+    words = []
+    for i, row in enumerate(f.readlines()):
+        if i != 0:
+            splitted = row.split("\t")
+            if len(splitted) == 4:
+                word = splitted[1]
+                if len(word) > 3:
+                    if all(
+                        char.lower() in "abcdefghijklmnopqrstuvwxyz" for char in word
+                    ):
+                        words.append(word)
+
+trie.bulk_insert(words)

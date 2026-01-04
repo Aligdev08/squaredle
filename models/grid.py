@@ -1,7 +1,6 @@
-import time
-
 from models.coordinate import Coordinate, get_coordinate, get_coordinate_from_values
 from models.node import Node
+from models.trie import trie
 from utils.alphabet import random_letter
 
 
@@ -88,7 +87,7 @@ class Grid:
         visited.remove((x, y))
         path.pop()
 
-    def get_all_combinations(self, max_length) -> set[str]:
+    def get_all_combinations(self, max_length: int) -> set[str]:
         combinations = []
 
         for col in self.nodes:
@@ -98,6 +97,15 @@ class Grid:
                 )  # depth first search for every node as root
 
         return set(combinations)  # unique combinations only
+
+    def solve(self, max_length: int) -> list[str]:
+        combinations = self.get_all_combinations(max_length)
+        words = []
+        for letters in combinations:
+            if len(letters) > 3:
+                if trie.search(letters) is True:
+                    words.append(letters)
+        return words
 
     @classmethod
     def from_dict(cls, data: dict) -> "Grid":

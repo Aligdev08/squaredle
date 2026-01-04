@@ -24,23 +24,26 @@ class TitleScene(BaseScene):
         self.previews_bg.fill(Color(200, 200, 200))
 
         self.login_button = Button(
-            Rect(0, 0, 50, 50), Color(200, 0, 0), self.__switch_to_puzzle_scene
+            Rect(900, 0, 100, 50), Color(50, 50, 50), self.__add_login_scene, "Login"
+        )
+
+        self.generate_button = Button(
+            Rect(400, 450, 200, 100),
+            Color(200, 200, 200),
+            self.__add_puzzle_scene,
+            "Generate Puzzle",
+            Color("black"),
         )
 
     def __add_login_scene(self):
-        screen = display.get_surface()
-        self.sub_scenes.push(
-            LoginScene(
-                centre_x_values(screen.width, get_relative_sub_screen_width(screen)),
-                centre_y_values(screen.height, get_relative_sub_screen_height(screen)),
-            )
-        )
+        self.sub_scenes.push(LoginScene())
 
-    def __switch_to_puzzle_scene(self):
-        self.switch_scene(PuzzleScene(Grid()))
+    def __add_puzzle_scene(self):
+        self.sub_scenes.push(PuzzleScene())
 
     def process(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
         self.login_button.process(events, pressed_keys)
+        self.generate_button.process(events, pressed_keys)
 
     def update(self):
         pass
@@ -53,3 +56,4 @@ class TitleScene(BaseScene):
         screen.blit(self.previews_bg, (0, centre_y(screen, self.previews_bg)))
 
         self.login_button.render(screen)
+        self.generate_button.render(screen)

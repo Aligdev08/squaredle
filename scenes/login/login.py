@@ -10,12 +10,12 @@ class LoginScene(BaseScene):
         super().__init__()
         self.text = self.heading_one.render("Login", True, Color(0, 0, 0))
 
-        self.terminate_button = Button(
-            Rect(0, 0, 50, 50), Color(200, 0, 0), self.terminate
+        self.quit_button = Button(
+            Rect(950, 0, 50, 50), Color(255, 255, 255), self.terminate, "x", "red"
         )
 
     def process(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
-        self.terminate_button.process(events, pressed_keys, mouse.get_pos())
+        self.quit_button.process(events, pressed_keys, mouse.get_pos())
 
     def update(self):
         pass
@@ -25,4 +25,4 @@ class LoginScene(BaseScene):
 
         screen.blit(self.text, (centre_x(screen, self.text), 20))
 
-        self.terminate_button.render(screen)
+        self.quit_button.render(screen)

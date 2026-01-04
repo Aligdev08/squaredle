@@ -3,12 +3,6 @@ from abc import abstractmethod
 from pygame import Surface, event, font, key, mouse
 
 from models.stack import Stack
-from utils.alignment import (
-    centre_x_values,
-    centre_y_values,
-    get_relative_sub_screen_height,
-    get_relative_sub_screen_width,
-)
 
 
 class BaseScene:
@@ -48,26 +42,22 @@ class BaseScene:
     def render_all(self, screen: Surface):
         self.render(screen)
 
-        sub_screen_width = get_relative_sub_screen_width(screen)
-        sub_screen_height = get_relative_sub_screen_height(screen)
-
         sub_screen = Surface(
-            (sub_screen_width, sub_screen_height),
+            (screen.width, screen.height),
         )
         sub_screen = sub_screen.convert_alpha()
         sub_screen.fill((0, 0, 0, 0))
 
-        for sub_scene in self.sub_scenes.array:
+        for sub_scene in self.sub_scenes.to_list():
             if sub_scene is not None:
                 if sub_scene.next is not None:
                     sub_scene.render(sub_screen)
+                else:
+                    self.sub_scenes.pop()
 
         screen.blit(
             sub_screen,
-            (
-                centre_x_values(screen.width, sub_screen_width),
-                centre_y_values(screen.height, sub_screen_height),
-            ),
+            (0, 0),
         )
 
     def add_sub_scene(self, sub_scene: "type[BaseScene]") -> int:
