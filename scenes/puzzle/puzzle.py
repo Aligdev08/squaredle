@@ -49,7 +49,7 @@ class PuzzleScene(BaseScene):
         self.path_color = (255, 255, 0)
 
         self.quit_button = Button(
-            Rect(950, 0, 50, 50), Color(255, 255, 255), self.terminate, "x", "red"
+            Rect(950, 0, 50, 50), Color(255, 255, 255), self.terminate, "->", "red"
         )
 
         self.dragging = False

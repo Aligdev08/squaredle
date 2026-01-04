@@ -11,7 +11,7 @@ class LoginScene(BaseScene):
         self.text = self.heading_one.render("Login", True, Color(0, 0, 0))
 
         self.quit_button = Button(
-            Rect(950, 0, 50, 50), Color(255, 255, 255), self.terminate, "x", "red"
+            Rect(950, 0, 50, 50), Color(255, 255, 255), self.terminate, "->", "red"
         )
 
     def process(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
