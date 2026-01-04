@@ -33,8 +33,6 @@ class Hoverable:
     ):
         pos = relative_pos or pygame.mouse.get_pos()
 
-        print(pos)
-
         if self.rect.collidepoint(pos):
 
             self.screen.fill(self.hover_colour)

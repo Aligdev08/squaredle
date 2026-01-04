@@ -1,22 +1,21 @@
 from abc import abstractmethod
 
 from pygame import Surface, event, font, key, mouse
+
 from models.stack import Stack
 from utils.alignment import (
     centre_x_values,
     centre_y_values,
-    get_relative_sub_screen_width,
     get_relative_sub_screen_height,
+    get_relative_sub_screen_width,
 )
 
 
 class BaseScene:
-    def __init__(self, top, left):
+    def __init__(self):
         self.next = self
         self.sub_scenes = Stack(10)  # maximum of 10 sub scenes
         self.heading_one = font.Font("media/mont-heavy.ttf", 32)
-        self.abs_top = top
-        self.abs_left = left
 
     @abstractmethod
     def process(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
@@ -70,11 +69,6 @@ class BaseScene:
                 centre_y_values(screen.height, sub_screen_height),
             ),
         )
-
-    def get_relative_mouse_pos(self) -> tuple[int, int]:
-        abs_pos = mouse.get_pos()
-
-        return max(0, abs_pos[0] - self.abs_left), max(0, abs_pos[1] - self.abs_top)
 
     def add_sub_scene(self, sub_scene: "type[BaseScene]") -> int:
         self.sub_scenes.push(sub_scene)

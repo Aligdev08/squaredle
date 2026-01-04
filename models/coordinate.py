@@ -8,6 +8,12 @@ class Coordinate:
     def __str__(self):
         return f"({self.x}, {self.y})"
 
+    def __eq__(self, other):
+        if not isinstance(other, Coordinate):
+            print("Not same type")
+            return False
+        return self.x == other.x and self.y == other.y
+
     def get_neighbours(self, limit=None) -> list["Coordinate"]:
         neighbours = []
         for x, y in [

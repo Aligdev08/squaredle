@@ -1,4 +1,4 @@
-from pygame import Color, Rect, Surface, event, key
+from pygame import Color, Rect, Surface, event, key, mouse
 
 from models.button import Button
 from scenes.scene import BaseScene
@@ -6,8 +6,8 @@ from utils.alignment import centre_x
 
 
 class LoginScene(BaseScene):
-    def __init__(self, top: int, left: int):
-        super().__init__(top, left)
+    def __init__(self):
+        super().__init__()
         self.text = self.heading_one.render("Login", True, Color(0, 0, 0))
 
         self.terminate_button = Button(
@@ -15,9 +15,7 @@ class LoginScene(BaseScene):
         )
 
     def process(self, events: list[event.Event], pressed_keys: key.ScancodeWrapper):
-        self.terminate_button.process(
-            events, pressed_keys, self.get_relative_mouse_pos()
-        )
+        self.terminate_button.process(events, pressed_keys, mouse.get_pos())
 
     def update(self):
         pass

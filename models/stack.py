@@ -19,14 +19,20 @@ class Stack:
 
         return i
 
+    def to_list(self) -> list[object]:
+        return [self.array[i] for i in range(self.top_pointer)]
+
+    def clear(self) -> None:
+        self.__init__(len(self.array))
+
     def is_empty(self) -> bool:
         return self.top_pointer == 0
 
     def is_full(self) -> bool:
         return self.top_pointer == len(self.array)
 
-    def peek(self) -> object:
-        return self.array[self.top_pointer - 1]
+    def peek(self, amt: int = 1) -> object:
+        return self.array[self.top_pointer - amt]
 
     def pop(self) -> object:
         if self.is_empty():

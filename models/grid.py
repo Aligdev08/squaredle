@@ -1,16 +1,28 @@
-from utils.alphabet import random_letter
 import time
 
 from models.coordinate import Coordinate, get_coordinate, get_coordinate_from_values
 from models.node import Node
+from utils.alphabet import random_letter
 
 
 class Grid:
-    def __init__(self, length: int = 4, nodes=None):
+    def __init__(
+        self, length: int = 4, nodes: list[list[str]] | list[list[Node]] | None = None
+    ):
         if nodes is None:
             nodes = []
+        else:
+            if isinstance(nodes[0][0], str):
+                nodes = [
+                    [
+                        Node(char, get_coordinate(Coordinate(x, y)))
+                        for y, char in enumerate(col)
+                    ]
+                    for x, col in enumerate(nodes)
+                ]
 
         self.length = length
+
         self.nodes: list[list[Node]] = nodes
         if not nodes:
             self.__generate_nodes()
@@ -71,7 +83,7 @@ class Grid:
                         max_length,
                         visited,
                         path,
-                    )  # recursive call within function
+                    )  # recursive call
 
         visited.remove((x, y))
         path.pop()
@@ -105,22 +117,22 @@ class Grid:
         return cls(len(nodes), nodes)
 
 
-grid = Grid()
-print(grid)
+# grid = Grid()
+# print(grid)
 
 
-def test(max_length):
-    start = time.time()
-    combs = grid.get_all_combinations(max_length)
-    end = time.time()
-    print(f"{max_length}. {len(combs):,} letter combinations in {end - start:.5f}s")
+# def test(max_length):
+#     start = time.time()
+#     combs = grid.get_all_combinations(max_length)
+#     end = time.time()
+#     print(f"{max_length}. {len(combs):,} letter combinations in {end - start:.5f}s")
 
 
-test(1)
-test(2)
-test(3)
-test(4)
-test(5)
-test(6)
-test(7)
-test(8)
+# test(1)
+# test(2)
+# test(3)
+# test(4)
+# test(5)
+# test(6)
+# test(7)
+# test(8)
