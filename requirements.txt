@@ -1,1 +1,2 @@
 pygame-ce
+argon2-cffi
